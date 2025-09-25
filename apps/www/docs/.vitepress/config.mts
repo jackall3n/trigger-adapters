@@ -4,8 +4,14 @@ import { defineConfig } from "vitepress";
 export default defineConfig({
 	title: "trigger-adapters",
 	description: "Documentation for Trigger Adapters",
+	base: "/",
 	cleanUrls: true,
 	lastUpdated: true,
+	head: [
+		["meta", { name: "viewport", content: "width=device-width, initial-scale=1" }],
+		["meta", { property: "og:title", content: "trigger-adapters" }],
+		["meta", { property: "og:description", content: "Framework-agnostic HTTP handlers for Trigger.dev" }],
+	],
 	themeConfig: {
 		search: {
 			provider: "local",
