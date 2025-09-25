@@ -1,40 +1,40 @@
 {
-    "buildCommand": "cd ../.. && turbo run build --filter=www",
-    "outputDirectory": "docs/.vitepress/dist",
-    "installCommand": "cd ../.. && bun install",
-    "framework": null,
-    "rewrites": [
+  "buildCommand": "cd ../.. && turbo run build --filter=www",
+  "outputDirectory": "docs/.vitepress/dist",
+  "installCommand": "cd ../.. && bun install",
+  "framework": null,
+  "rewrites": [
+    {
+      "source": "/(.*)",
+      "destination": "/$1"
+    }
+  ],
+  "headers": [
+    {
+      "source": "/assets/(.*)",
+      "headers": [
         {
-            "source": "/(.*)",
-            "destination": "/$1"
+          "key": "Cache-Control",
+          "value": "max-age=31536000, immutable"
         }
-    ],
-    "headers": [
+      ]
+    },
+    {
+      "source": "/(.*)",
+      "headers": [
         {
-            "source": "/assets/(.*)",
-            "headers": [
-                {
-                    "key": "Cache-Control",
-                    "value": "max-age=31536000, immutable"
-                }
-            ]
+          "key": "X-Content-Type-Options",
+          "value": "nosniff"
         },
         {
-            "source": "/(.*)",
-            "headers": [
-                {
-                    "key": "X-Content-Type-Options",
-                    "value": "nosniff"
-                },
-                {
-                    "key": "X-Frame-Options",
-                    "value": "DENY"
-                },
-                {
-                    "key": "X-XSS-Protection",
-                    "value": "1; mode=block"
-                }
-            ]
+          "key": "X-Frame-Options",
+          "value": "DENY"
+        },
+        {
+          "key": "X-XSS-Protection",
+          "value": "1; mode=block"
         }
-    ]
+      ]
+    }
+  ]
 }
