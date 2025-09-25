@@ -1,16 +1,16 @@
 {
-	"name": "www",
-	"private": true,
-	"type": "module",
-	"scripts": {
-		"dev": "vitepress dev docs",
-		"build": "vitepress build docs",
-		"preview": "vitepress preview docs"
-	},
-	"devDependencies": {
-		"vitepress": "^2.0.0-alpha.12"
-	},
-	"dependencies": {
-		"@vercel/analytics": "^1.5.0"
-	}
+    "name": "www",
+    "private": true,
+    "type": "module",
+    "scripts": {
+        "dev": "vitepress dev docs",
+        "build": "vitepress build docs",
+        "preview": "vitepress preview docs"
+    },
+    "devDependencies": {
+        "vitepress": "^2.0.0-alpha.12"
+    },
+    "dependencies": {
+        "@vercel/analytics": "^1.5.0"
+    }
 }

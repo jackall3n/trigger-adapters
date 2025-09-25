@@ -1,27 +1,27 @@
 {
-	"name": "trigger-adapters",
-	"private": true,
-	"scripts": {
-		"build": "turbo run build",
-		"dev": "turbo run dev",
-		"check": "bun x biome check",
-		"check:write": "bun check --write",
-		"preview": "turbo run preview",
-		"check-types": "turbo run check-types",
-		"test": "turbo run test"
-	},
-	"devDependencies": {
-		"@biomejs/biome": "2.2.4",
-		"lefthook": "^1.13.4",
-		"turbo": "^2.5.8",
-		"typescript": "5.9.2"
-	},
-	"engines": {
-		"node": ">=18"
-	},
-	"packageManager": "bun@1.2.21",
-	"workspaces": [
-		"apps/*",
-		"packages/*"
-	]
+    "name": "trigger-adapters",
+    "private": true,
+    "scripts": {
+        "build": "turbo run build",
+        "dev": "turbo run dev",
+        "check": "bun x biome check",
+        "check:write": "bun check --write",
+        "preview": "turbo run preview",
+        "check-types": "turbo run check-types",
+        "test": "turbo run test"
+    },
+    "devDependencies": {
+        "@biomejs/biome": "2.2.4",
+        "lefthook": "^1.13.4",
+        "turbo": "^2.5.8",
+        "typescript": "5.9.2"
+    },
+    "engines": {
+        "node": ">=18"
+    },
+    "packageManager": "bun@1.2.21",
+    "workspaces": [
+        "apps/*",
+        "packages/*"
+    ]
 }

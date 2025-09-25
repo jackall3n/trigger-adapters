@@ -1,75 +1,75 @@
 {
-	"name": "trigger-adapters",
-	"version": "0.0.0",
-	"description": "A library for creating trigger adapters.",
-	"type": "module",
-	"license": "MIT",
-	"homepage": "https://github.com/jackall3n/trigger-adapters#readme",
-	"bugs": {
-		"url": "https://github.com/jackall3n/trigger-adapters/issues"
-	},
-	"repository": {
-		"type": "git",
-		"url": "git+https://github.com/jackall3n/trigger-adapters.git"
-	},
-	"author": "Jack Allen <jackall3n@gmail.com>",
-	"files": [
-		"dist"
-	],
-	"main": "./dist/index.js",
-	"module": "./dist/index.js",
-	"types": "./dist/index.d.ts",
-	"exports": {
-		"./express": {
-			"import": "./dist/express.js",
-			"require": "./dist/express.cjs"
-		},
-		"./hono": {
-			"import": "./dist/hono.js",
-			"require": "./dist/hono.cjs"
-		},
-		"./nextjs": {
-			"import": "./dist/nextjs.js",
-			"require": "./dist/nextjs.cjs"
-		},
-		"./package.json": "./package.json"
-	},
-	"publishConfig": {
-		"access": "public"
-	},
-	"scripts": {
-		"build": "tsdown",
-		"dev": "tsdown --watch ./src",
-		"test": "vitest",
-		"typecheck": "tsc --noEmit",
-		"release": "bumpp && npm publish"
-	},
-	"peerDependencies": {
-		"express": "*",
-		"fastify": "*",
-		"hono": "*",
-		"next": "*"
-	},
-	"peerDependenciesMeta": {
-		"express": {
-			"optional": true
-		},
-		"fastify": {
-			"optional": true
-		},
-		"hono": {
-			"optional": true
-		},
-		"next": {
-			"optional": true
-		}
-	},
-	"devDependencies": {
-		"@types/node": "^24.5.2",
-		"bumpp": "^10.2.3",
-		"fastify": "^5.6.1",
-		"tsdown": "^0.15.4",
-		"typescript": "^5.9.2",
-		"vitest": "^3.2.4"
-	}
+    "name": "trigger-adapters",
+    "version": "0.0.0",
+    "description": "A library for creating trigger adapters.",
+    "type": "module",
+    "license": "MIT",
+    "homepage": "https://github.com/jackall3n/trigger-adapters#readme",
+    "bugs": {
+        "url": "https://github.com/jackall3n/trigger-adapters/issues"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/jackall3n/trigger-adapters.git"
+    },
+    "author": "Jack Allen <jackall3n@gmail.com>",
+    "files": [
+        "dist"
+    ],
+    "main": "./dist/index.js",
+    "module": "./dist/index.js",
+    "types": "./dist/index.d.ts",
+    "exports": {
+        "./express": {
+            "import": "./dist/express.js",
+            "require": "./dist/express.cjs"
+        },
+        "./hono": {
+            "import": "./dist/hono.js",
+            "require": "./dist/hono.cjs"
+        },
+        "./nextjs": {
+            "import": "./dist/nextjs.js",
+            "require": "./dist/nextjs.cjs"
+        },
+        "./package.json": "./package.json"
+    },
+    "publishConfig": {
+        "access": "public"
+    },
+    "scripts": {
+        "build": "tsdown",
+        "dev": "tsdown --watch ./src",
+        "test": "vitest",
+        "typecheck": "tsc --noEmit",
+        "release": "bumpp && npm publish"
+    },
+    "peerDependencies": {
+        "express": "*",
+        "fastify": "*",
+        "hono": "*",
+        "next": "*"
+    },
+    "peerDependenciesMeta": {
+        "express": {
+            "optional": true
+        },
+        "fastify": {
+            "optional": true
+        },
+        "hono": {
+            "optional": true
+        },
+        "next": {
+            "optional": true
+        }
+    },
+    "devDependencies": {
+        "@types/node": "^24.5.2",
+        "bumpp": "^10.2.3",
+        "fastify": "^5.6.1",
+        "tsdown": "^0.15.4",
+        "typescript": "^5.9.2",
+        "vitest": "^3.2.4"
+    }
 }
