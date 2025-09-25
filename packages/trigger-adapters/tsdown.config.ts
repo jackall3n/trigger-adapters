@@ -11,5 +11,6 @@ export default defineConfig({
     nextjs: "./src/nextjs.ts",
     hono: "./src/hono.ts",
     express: "./src/express.ts",
+    fastify: "./src/fastify.ts",
   },
 });

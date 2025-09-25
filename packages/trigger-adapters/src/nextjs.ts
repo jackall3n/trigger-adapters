@@ -1,20 +1,26 @@
 import type { NextApiRequest, NextApiResponse } from "next";
+import { NextResponse } from "next/server";
 import { trigger } from "./core";
 
-export function handler() {
+export type NextjsHandler = {
+  POST: (request: Request) => Promise<NextResponse>;
+  handle: (request: NextApiRequest, response: NextApiResponse) => Promise<void>;
+};
+
+export function handler(): NextjsHandler {
   return {
-    POST: async (request: Request): Promise<Response> => {
+    POST: async (request: Request) => {
       const taskId = request.url.split("/").pop();
 
       if (!taskId) {
-        return Response.json({ error: "Task ID is required" }, { status: 400 });
+        return NextResponse.json({ error: "Task ID is required" }, { status: 400 });
       }
 
       const payload = await request.json();
 
       const response = await trigger(taskId, payload);
 
-      return Response.json(response);
+      return NextResponse.json(response);
     },
     handle: async (request: NextApiRequest, response: NextApiResponse): Promise<void> => {
       if (request.method !== "POST") {
