@@ -278,7 +278,7 @@ export async function POST(
 
 ### Environment Variables
 
-```env
+```shell
 # .env.local
 TRIGGER_API_KEY=your-api-key
 TRIGGER_API_URL=https://api.trigger.dev
