@@ -20,7 +20,7 @@ export function handler() {
 			const payload = request.body;
 			const result = await trigger(taskId, payload);
 			return reply.send(result);
-		} catch (error) {
+		} catch (_error) {
 			return reply.code(500).send({ error: "Failed to trigger task" });
 		}
 	};
