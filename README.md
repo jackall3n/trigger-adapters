@@ -1,135 +1,308 @@
-# Turborepo starter
+# trigger-adapters
 
-This Turborepo starter is maintained by the Turborepo core team.
+Framework-agnostic HTTP handlers for [Trigger.dev](https://trigger.dev) – expose your background tasks via REST endpoints in any web framework.
 
-## Using this example
+[![npm version](https://badge.fury.io/js/trigger-adapters.svg)](https://www.npmjs.com/package/trigger-adapters)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
-Run the following command:
+## Features
 
-```sh
-npx create-turbo@latest
+- 🚀 **Simple Integration** - Drop-in handlers for your existing web framework
+- 🎯 **Framework Support** - Pre-built adapters for Next.js, Hono, and Express
+- 📦 **Lightweight** - Minimal dependencies, tiny bundle size
+- 🛠️ **TypeScript First** - Full type safety and autocompletion
+- 🔄 **Consistent API** - Same pattern across all frameworks
+
+## Installation
+
+```bash
+npm install trigger-adapters
 ```
 
-## What's inside?
+Or using your preferred package manager:
 
-This Turborepo includes the following packages/apps:
-
-### Apps and Packages
-
-- `docs`: a [Next.js](https://nextjs.org/) app
-- `web`: another [Next.js](https://nextjs.org/) app
-- `@repo/ui`: a stub React component library shared by both `web` and `docs` applications
-- `@repo/eslint-config`: `eslint` configurations (includes `eslint-config-next` and `eslint-config-prettier`)
-- `@repo/typescript-config`: `tsconfig.json`s used throughout the monorepo
-
-Each package/app is 100% [TypeScript](https://www.typescriptlang.org/).
-
-### Utilities
-
-This Turborepo has some additional tools already setup for you:
-
-- [TypeScript](https://www.typescriptlang.org/) for static type checking
-- [ESLint](https://eslint.org/) for code linting
-- [Prettier](https://prettier.io) for code formatting
-
-### Build
-
-To build all apps and packages, run the following command:
-
-```
-cd my-turborepo
-
-# With [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation) installed (recommended)
-turbo build
-
-# Without [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation), use your package manager
-npx turbo build
-yarn dlx turbo build
-pnpm exec turbo build
+```bash
+yarn add trigger-adapters
+pnpm add trigger-adapters
+bun add trigger-adapters
 ```
 
-You can build a specific package by using a [filter](https://turborepo.com/docs/crafting-your-repository/running-tasks#using-filters):
+## Quick Start
 
-```
-# With [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation) installed (recommended)
-turbo build --filter=docs
+### Next.js (App Router)
 
-# Without [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation), use your package manager
-npx turbo build --filter=docs
-yarn exec turbo build --filter=docs
-pnpm exec turbo build --filter=docs
-```
+```typescript
+// app/api/trigger/[id]/route.ts
+import { handler } from 'trigger-adapters/nextjs';
 
-### Develop
-
-To develop all apps and packages, run the following command:
-
-```
-cd my-turborepo
-
-# With [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation) installed (recommended)
-turbo dev
-
-# Without [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation), use your package manager
-npx turbo dev
-yarn exec turbo dev
-pnpm exec turbo dev
+export const POST = handler();
 ```
 
-You can develop a specific package by using a [filter](https://turborepo.com/docs/crafting-your-repository/running-tasks#using-filters):
+### Hono
 
-```
-# With [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation) installed (recommended)
-turbo dev --filter=web
+```typescript
+import { Hono } from 'hono';
+import { handler } from 'trigger-adapters/hono';
 
-# Without [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation), use your package manager
-npx turbo dev --filter=web
-yarn exec turbo dev --filter=web
-pnpm exec turbo dev --filter=web
-```
+const app = new Hono();
 
-### Remote Caching
+app.post('/api/trigger/:id', handler());
 
-> [!TIP]
-> Vercel Remote Cache is free for all plans. Get started today at [vercel.com](https://vercel.com/signup?/signup?utm_source=remote-cache-sdk&utm_campaign=free_remote_cache).
-
-Turborepo can use a technique known as [Remote Caching](https://turborepo.com/docs/core-concepts/remote-caching) to share cache artifacts across machines, enabling you to share build caches with your team and CI/CD pipelines.
-
-By default, Turborepo will cache locally. To enable Remote Caching you will need an account with Vercel. If you don't have an account you can [create one](https://vercel.com/signup?utm_source=turborepo-examples), then enter the following commands:
-
-```
-cd my-turborepo
-
-# With [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation) installed (recommended)
-turbo login
-
-# Without [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation), use your package manager
-npx turbo login
-yarn exec turbo login
-pnpm exec turbo login
+export default app;
 ```
 
-This will authenticate the Turborepo CLI with your [Vercel account](https://vercel.com/docs/concepts/personal-accounts/overview).
+### Express
 
-Next, you can link your Turborepo to your Remote Cache by running the following command from the root of your Turborepo:
+```javascript
+import express from 'express';
+import { handler } from 'trigger-adapters/express';
+
+const app = express();
+
+app.use(express.json());
+app.post('/api/trigger/:id', handler());
+
+app.listen(3000);
+```
+
+## How It Works
+
+Trigger Adapters provides a simple, consistent interface for exposing Trigger.dev tasks via HTTP endpoints:
+
+1. **Extract Task ID** from the route parameters
+2. **Parse Request Body** to get the task payload
+3. **Trigger the Task** using Trigger.dev SDK
+4. **Return Response** in the appropriate format for the framework
+
+Each adapter handles framework-specific details like request/response formats, middleware integration, and error handling.
+
+## Documentation
+
+Visit [https://trigger-adapters.dev](https://trigger-adapters.dev) for full documentation, including:
+
+- [Getting Started Guide](https://trigger-adapters.dev/guide/introduction)
+- [Usage Examples](https://trigger-adapters.dev/guide/usage)
+- [Next.js Adapter](https://trigger-adapters.dev/adapters/nextjs)
+- [Hono Adapter](https://trigger-adapters.dev/adapters/hono)
+- [Express Adapter](https://trigger-adapters.dev/adapters/express)
+
+## Examples
+
+### With Authentication (Next.js)
+
+```typescript
+import { handler } from 'trigger-adapters/nextjs';
+import { NextRequest, NextResponse } from 'next/server';
+import { verifyToken } from '@/lib/auth';
+
+export async function POST(
+  request: NextRequest,
+  context: { params: { id: string } }
+) {
+  const token = request.headers.get('Authorization');
+
+  if (!token || !await verifyToken(token)) {
+    return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
+  }
+
+  return handler()(request, context);
+}
+```
+
+### With Middleware (Hono)
+
+```typescript
+import { Hono } from 'hono';
+import { bearerAuth } from 'hono/bearer-auth';
+import { cors } from 'hono/cors';
+import { handler } from 'trigger-adapters/hono';
+
+const app = new Hono();
+
+app.use('/api/*', cors());
+app.use('/api/trigger/*', bearerAuth({ token: process.env.API_TOKEN }));
+
+app.post('/api/trigger/:id', handler());
+```
+
+### With Rate Limiting (Express)
+
+```javascript
+import express from 'express';
+import rateLimit from 'express-rate-limit';
+import { handler } from 'trigger-adapters/express';
+
+const app = express();
+
+const limiter = rateLimit({
+  windowMs: 15 * 60 * 1000,
+  max: 100
+});
+
+app.use(express.json());
+app.post('/api/trigger/:id', limiter, handler());
+```
+
+## Development
+
+This is a monorepo managed with [Turborepo](https://turborepo.com) and [Bun](https://bun.sh).
+
+### Project Structure
 
 ```
-# With [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation) installed (recommended)
-turbo link
-
-# Without [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation), use your package manager
-npx turbo link
-yarn exec turbo link
-pnpm exec turbo link
+trigger-adapters/
+├── packages/
+│   └── trigger-adapters/    # Main library package
+├── apps/
+│   └── www/                 # Documentation site (VitePress)
+└── README.md
 ```
 
-## Useful Links
+### Getting Started
 
-Learn more about the power of Turborepo:
+```bash
+# Clone the repository
+git clone https://github.com/jackall3n/trigger-adapters.git
+cd trigger-adapters
 
-- [Tasks](https://turborepo.com/docs/crafting-your-repository/running-tasks)
-- [Caching](https://turborepo.com/docs/crafting-your-repository/caching)
-- [Remote Caching](https://turborepo.com/docs/core-concepts/remote-caching)
-- [Filtering](https://turborepo.com/docs/crafting-your-repository/running-tasks#using-filters)
-- [Configuration Options](https://turborepo.com/docs/reference/configuration)
-- [CLI Usage](https://turborepo.com/docs/reference/command-line-reference)
+# Install dependencies
+bun install
+
+# Build all packages
+bun run build
+
+# Run development mode
+bun run dev
+
+# Run tests
+cd packages/trigger-adapters
+bun run test
+```
+
+### Commands
+
+| Command | Description |
+|---------|-------------|
+| `bun run build` | Build all packages |
+| `bun run dev` | Start development mode |
+| `bun run check` | Run Biome linter/formatter check |
+| `bun run check:write` | Fix linting/formatting issues |
+| `bun run check-types` | Run TypeScript type checking |
+
+### Package Development
+
+The main library is in `packages/trigger-adapters/`:
+
+```bash
+cd packages/trigger-adapters
+
+# Build the library
+bun run build
+
+# Watch mode for development
+bun run dev
+
+# Run tests
+bun run test
+
+# Type checking
+bun run typecheck
+
+# Release new version
+bun run release
+```
+
+### Documentation Development
+
+The documentation site is in `apps/www/`:
+
+```bash
+cd apps/www
+
+# Start dev server
+bun run dev
+
+# Build documentation
+bun run build
+
+# Preview built docs
+bun run preview
+```
+
+## API Reference
+
+### `handler()`
+
+All adapters export a `handler()` function that returns a framework-specific request handler.
+
+#### Next.js
+
+```typescript
+import { handler } from 'trigger-adapters/nextjs';
+
+// App Router
+export const POST = handler();
+
+// Pages Router
+export default handler();
+```
+
+#### Hono
+
+```typescript
+import { handler } from 'trigger-adapters/hono';
+
+app.post('/trigger/:id', handler());
+```
+
+#### Express
+
+```javascript
+import { handler } from 'trigger-adapters/express';
+
+app.post('/trigger/:id', handler());
+```
+
+## Prerequisites
+
+- [Trigger.dev](https://trigger.dev) account and SDK configured
+- One of the supported frameworks (Next.js, Hono, Express)
+- Node.js 18+ or Bun
+
+## Contributing
+
+Contributions are welcome! Please feel free to submit a Pull Request. For major changes, please open an issue first to discuss what you would like to change.
+
+1. Fork the repository
+2. Create your feature branch (`git checkout -b feature/amazing-feature`)
+3. Commit your changes (`git commit -m 'Add some amazing feature'`)
+4. Push to the branch (`git push origin feature/amazing-feature`)
+5. Open a Pull Request
+
+### Development Guidelines
+
+- Use Bun as the package manager
+- Follow the existing code style (enforced by Biome)
+- Add tests for new features
+- Update documentation as needed
+
+## Support
+
+- 📚 [Documentation](https://trigger-adapters.dev)
+- 💬 [GitHub Issues](https://github.com/jackall3n/trigger-adapters/issues)
+- 🐛 [Bug Reports](https://github.com/jackall3n/trigger-adapters/issues/new?labels=bug)
+- 💡 [Feature Requests](https://github.com/jackall3n/trigger-adapters/issues/new?labels=enhancement)
+
+## License
+
+MIT © [Jack Allen](https://github.com/jackall3n)
+
+## Acknowledgments
+
+- Built for [Trigger.dev](https://trigger.dev)
+- Inspired by the need for simple, consistent HTTP handlers across frameworks
+- Thanks to all contributors and users
+
+---
+
+Made with ❤️ by [Jack Allen](https://github.com/jackall3n)
