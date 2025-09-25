@@ -29,6 +29,7 @@ export default defineConfig({
 				collapsed: false,
 				items: [
 					{ text: "Next.js", link: "/adapters/nextjs" },
+					{ text: "Hono", link: "/adapters/hono" },
 					{ text: "Express", link: "/adapters/express" },
 				],
 			},

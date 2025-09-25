@@ -1,58 +1,42 @@
 ---
-title: trigger-adapters - REST handlers for Trigger.dev 🪄
-description: A set of handlers for Trigger.dev
+title: Trigger Adapters - Framework-agnostic HTTP handlers for Trigger.dev
+description: Simple, lightweight adapters to expose Trigger.dev tasks via HTTP endpoints in any web framework
 titleTemplate: ':title'
 layout: home
 hero:
-  name: trigger-adapters
-  text: REST handlers for Trigger.dev 🪄
-  tagline: A set of handlers for Trigger.dev
-  image:
-    light: /code-light.png
-    dark: /code-dark.png
-    alt: trigger-adapters Example
+  name: Trigger Adapters
+  text: HTTP handlers for Trigger.dev
+  tagline: Expose your Trigger.dev tasks via REST endpoints in Next.js, Hono, and other modern frameworks
   actions:
     - theme: brand
       text: Get Started
       link: /guide/introduction
     - theme: alt
-      text: Adapters
-      link: /adapters
+      text: View on GitHub
+      link: https://github.com/jackall3n/trigger-adapters
 features:
-  - icon: 🔗
-    title: End-to-End Type Safety
-    details: Ensure type-safe inputs, outputs, and errors from client to server.
-  - icon: 📘
-    title: First-Class OpenAPI
-    details: Built-in support that fully adheres to the OpenAPI standard.
-  - icon: 📝
-    title: Contract-First Development
-    details: Optionally define your API contract before implementation.
-  - icon: 🔍
-    title: First-Class OpenTelemetry
-    details: Seamlessly integrate with OpenTelemetry for observability.
-  - icon: ⚙️
-    title: Framework Integrations
-    details: Seamlessly integrate with TanStack Query (React, Vue, Solid, Svelte, Angular, etc.), SWR, Pinia Colada, NestJS, and more.
   - icon: 🚀
-    title: Server Actions
-    details: Fully compatible with React Server Actions on Next.js, TanStack Start, and other platforms.
-  - icon: 🔠
-    title: Standard Schema Support
-    details: Works out of the box with Zod, Valibot, ArkType, and other schema validators.
-  - icon: 🗃️
-    title: Native Types
-    details: Supports native types like Date, File, Blob, BigInt, URL, and more.
-  - icon: ⏱️
-    title: Lazy Router
-    details: Enhance cold start times with our lazy routing feature.
-  - icon: 📡
-    title: SSE & Streaming
-    details: Enjoy full type-safe support for SSE and streaming.
-  - icon: 🌍
-    title: Multi-Runtime Support
-    details: Fast and lightweight on Cloudflare, Deno, Bun, Node.js, and beyond.
+    title: Simple Integration
+    details: Drop-in handlers that work with your existing web framework. No complex setup required.
+  - icon: 🎯
+    title: Modern Framework Support
+    details: Pre-built adapters for Next.js, Hono, and Express with a consistent API across all frameworks.
   - icon: 🔌
-    title: Extendability
-    details: Easily extend functionality with plugins, middleware, and interceptors.
+    title: Plug & Play
+    details: Import the adapter for your framework and connect it to your route. That's it.
+  - icon: 📦
+    title: Lightweight
+    details: Minimal dependencies and tiny bundle size. We only wrap what's necessary.
+  - icon: 🛠️
+    title: TypeScript First
+    details: Full TypeScript support with type inference for request and response handling.
+  - icon: 🔄
+    title: Consistent API
+    details: Same simple pattern across all frameworks - extract task ID, get payload, trigger task.
+  - icon: 🎨
+    title: Customizable
+    details: Easy to extend or customize the handlers to fit your specific needs.
+  - icon: ⚡
+    title: Production Ready
+    details: Built with best practices and ready for production use with proper error handling.
 ---
